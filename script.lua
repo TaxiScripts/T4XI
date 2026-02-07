@@ -1,4 +1,19 @@
 -- ======================
+-- UI KEYBIND (Right Shift)
+-- ======================
+local SettingsTab = Window:NewTab("Settings")
+local UISection = SettingsTab:NewSection("UI")
+
+UISection:NewKeybind(
+    "Toggle UI",
+    "Open / Close menu",
+    Enum.KeyCode.RightShift,
+    function()
+        Library:ToggleUI()
+    end
+)
+
+-- ======================
 -- UI INIT
 -- ======================
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
@@ -257,3 +272,4 @@ SpinSection:NewToggle("SpinBot", "makes you SPINNN!!1!", function(state)
     end
 end)
 SpinSection:NewSlider("Spin Speed", "Spinbot speed", 50, 0, function(v) spinSpeed = v end)
+
