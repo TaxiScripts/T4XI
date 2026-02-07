@@ -1,19 +1,4 @@
 -- ======================
--- UI KEYBIND (Right Shift)
--- ======================
-local SettingsTab = Window:NewTab("Settings")
-local UISection = SettingsTab:NewSection("UI")
-
-UISection:NewKeybind(
-    "Toggle UI",
-    "Open / Close menu",
-    Enum.KeyCode.RightShift,
-    function()
-        Library:ToggleUI()
-    end
-)
-
--- ======================
 -- UI INIT
 -- ======================
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
@@ -25,6 +10,20 @@ local UserInputService = game:GetService("UserInputService")
 local Camera = workspace.CurrentCamera
 
 local player = Players.LocalPlayer
+
+-- ======================
+-- UI TOGGLE
+-- ======================
+local uiOpen = true
+
+UserInputService.InputBegan:Connect(function(input, gpe)
+    if gpe then return end
+    if input.KeyCode == Enum.KeyCode.RightShift then
+        uiOpen = not uiOpen
+        Library:ToggleUI()
+    end
+end)
+
 
 -- ======================
 -- COMBAT TAB
@@ -272,4 +271,3 @@ SpinSection:NewToggle("SpinBot", "makes you SPINNN!!1!", function(state)
     end
 end)
 SpinSection:NewSlider("Spin Speed", "Spinbot speed", 50, 0, function(v) spinSpeed = v end)
-
